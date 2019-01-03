@@ -1,15 +1,15 @@
 <form id="addTripForm">
-  <input type="text" placeholder="Время отправления"><br>
-  <input type="text" placeholder="Пункт отправления"><br>
-  <input type="text" placeholder="Пункт прибытия"><br>
-  <input type="text" placeholder="Стоимость билета в $"><br>
-  <input type="button" value="Добавить рейс" (click) = addTrip()>
+  <input type="text" placeholder="Время отправления" [(ngModel)]="departureTime" name="departureTime"><br>
+  <input type="text" placeholder="Пункт отправления" [(ngModel)]="departurePoint" name="departurePoint"><br>
+  <input type="text" placeholder="Пункт прибытия" [(ngModel)]="arrivalPoint" name="arrivalPoint"><br>
+  <input type="text" placeholder="Стоимость билета в $" [(ngModel)]="price" name="price"><br>
+  <input type="button" value="Добавить рейс" (click) = addTrip(departureTime,departurePoint,arrivalPoint,price)>
 </form><br>
 
 <table>
   <tr *ngFor="let trip of trips">
-    <td>{{trip[0]}}</td>
-    <td>{{trip[1]}}</td>
-    <td>{{[trip[2]]}}</td>
+    <td>{{trip.departureTime}}</td>
+    <td>{{trip.departurePoint}} - {{trip.arrivalPoint}}</td>
+    <td>{{[trip.price]}}</td>
   </tr>
 </table>
