@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    display: flex;
+    width: 100%;
+    text-align: center;
+  }
+  td {
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid black;
+  }
+}
+
+form {
+  input {
+    margin: {
+      bottom: 5px;
+    }
+  }
+}
