@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-interface IForm {
-  name: string;
-  surname: string;
-  age: number;
-  city: string;
-}
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
