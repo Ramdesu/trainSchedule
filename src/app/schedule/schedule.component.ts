@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-export class trip{
-  constructor(public departureTime: string,
-              public departurePoint: string,
-              public arrivalPoint: string,
-              public price: number)
-  { }
+interface Trip {
+  departureTime: string,
+  departurePoint: string,
+  arrivalPoint: string,
+  price: number;
 }
 
 @Component({
@@ -21,12 +20,20 @@ export class ScheduleComponent implements OnInit {
   ngOnInit() {
   }
 
+  departureTime: string;
+  departurePoint: string;
+  arrivalPoint: string;
+  price: number;
 
-  trips: trip[] = [];
+  trips: Trip[] = [];
 
-  addTrip = (departureTime: string, departurePoint: string, arrivalPoint: string, price: number) => {
-    this.trips.push(new trip(departureTime, departurePoint, arrivalPoint, price));
+  addTrip(): void {
+    this.trips = [{
+      departureTime: this.departureTime,
+      departurePoint: this.departurePoint,
+      arrivalPoint: this.arrivalPoint,
+      price: this.price
+    }, ...this.trips];
   }
-
 }
 
