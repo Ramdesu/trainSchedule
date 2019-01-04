@@ -1,0 +1,10 @@
+<a routerLink="/timetable"><input type="button" value="Расписание"></a><br><br>
+<a routerLink="/"><input type="button" value="На главную"></a><br><br>
+
+<form>
+  <input type="text" placeholder="Имя" [(ngModel)]="name" name="name"><br>
+  <input type="text" placeholder="Фамилия" [(ngModel)]="surname" name="surname"><br>
+  <input type="number" placeholder="Возраст" [(ngModel)]="age" name="age"><br>
+  <input type="text" placeholder="Город" [(ngModel)]="city" name="city"><br><br>
+  <input type="button" value="Сохранить" (click)="addUser()">
+</form>
