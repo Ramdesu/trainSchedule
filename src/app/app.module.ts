@@ -12,7 +12,7 @@ import { UserComponent } from './user/user.component';
 const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'timetable', component: ScheduleComponent},
-  { path: 'cp', component: UserComponent}
+  { path: 'me', component: UserComponent}
 ];
 
 @NgModule({

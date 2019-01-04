@@ -15,8 +15,19 @@ table {
 
 form {
   input {
+    display: block;
     margin: {
       bottom: 5px;
     }
   }
 }
+
+div {
+  input {
+    display: block;
+    margin: {
+      bottom: 5px;
+    }
+  }
+}
+
