@@ -10,6 +10,6 @@
   <tr *ngFor="let trip of trips">
     <td>{{trip.departureTime}}</td>
     <td>{{trip.departurePoint}} - {{trip.arrivalPoint}}</td>
-    <td>${{[trip.price]}}</td>
+    <td>{{ trip.price | currency:'USD' }}</td>
   </tr>
 </table>

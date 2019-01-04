@@ -13,13 +13,7 @@ interface Trip {
   styleUrls: ['./schedule.component.scss']
 })
 
-export class ScheduleComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ScheduleComponent{
   departureTime: string;
   departurePoint: string;
   arrivalPoint: string;
