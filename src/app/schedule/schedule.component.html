@@ -1,17 +1,46 @@
 <div class="wrap"><a routerLink="/"><input type="button" value="На главную"></a></div>
 
-<form id="addTripForm">
-  <div class="wrap"><input type="text" placeholder="Время отправления" [(ngModel)]="departureTime" name="departureTime"></div>
-  <div class="wrap"><input type="text" placeholder="Пункт отправления" [(ngModel)]="departurePoint" name="departurePoint"></div>
-  <div class="wrap"><input type="text" placeholder="Пункт прибытия" [(ngModel)]="arrivalPoint" name="arrivalPoint"></div>
-  <div class="wrap"><input type="text" placeholder="Стоимость билета в $" [(ngModel)]="price" name="price"></div>
-  <input type="button" value="Добавить рейс" (click) = addTrip()>
-</form><br>
+  <form id="addTripForm">
+    <div class="wrap"><mat-form-field appearance="standard">
+      <mat-label>Время отправления</mat-label>
+      <input matInput type="time" [(ngModel)]="departureTime" name="departureTime">
+    </mat-form-field></div>
 
-<table>
-  <tr *ngFor="let trip of trips">
-    <td>{{trip.departureTime}}</td>
-    <td>{{trip.departurePoint}} - {{trip.arrivalPoint}}</td>
-    <td>{{ trip.price | currency:'USD' }}</td>
+    <div class="wrap"><mat-form-field appearance="standard">
+      <mat-label>Пункт отправления</mat-label>
+      <input matInput type="text" [(ngModel)]="departurePoint" name="departurePoint">
+    </mat-form-field></div>
+
+    <div class="wrap"><mat-form-field appearance="standard">
+      <mat-label>Пункт прибытия</mat-label>
+      <input matInput type="text" [(ngModel)]="arrivalPoint" name="arrivalPoint">
+    </mat-form-field></div>
+
+    <div class="wrap"><mat-form-field appearance="standard">
+      <span matPrefix>$&nbsp;</span>
+      <mat-label>Стоимость билета</mat-label>
+      <input matInput type="text" [(ngModel)]="price" name="price">
+    </mat-form-field></div>
+
+    <input type="button" value="Добавить рейс" (click) = addTrip()>
+  </form><br>
+
+
+<table class="table table-striped">
+  <thead *ngIf="trips.length != 0">
+  <tr>
+    <th>#</th>
+    <th>Время отправления</th>
+    <th>Маршрут</th>
+    <th>Стоимость билета</th>
   </tr>
+  </thead>
+ <tbody>
+ <tr *ngFor="let trip of trips; let index = index">
+   <td>{{index + 1}}</td>
+   <td>{{trip.departureTime}}</td>
+   <td>{{trip.departurePoint}} - {{trip.arrivalPoint}}</td>
+   <td>{{ trip.price | currency:'USD' }}</td>
+ </tr>
+ </tbody>
 </table>
