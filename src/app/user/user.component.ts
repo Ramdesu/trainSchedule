@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UserComponent {
-  user = (localStorage.getItem('user' ) == null)? {
+  user = JSON.parse(localStorage.getItem('user')) || {
     name: '',
     surname: '',
     age: '',
     city: ''
-  }: JSON.parse(localStorage.getItem('user'));
+  };
 
   saveUser(): void {
     localStorage.setItem('user', JSON.stringify(this.user));
