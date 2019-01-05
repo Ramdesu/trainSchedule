@@ -4,33 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageDataChangingService {
-  isJSON(str): boolean {
+  setItem(item: any, key: string): void {
+    localStorage.setItem(key, JSON.stringify(item));
+  }
+
+  getItem(key: string): any {
+    let item = localStorage.getItem(key);
     try {
-      JSON.parse(str);
+      return JSON.parse(item);
     } catch (e) {
-      return false;
+      return item;
     }
-    return true;
-  }
-
-  setItem(item, key): void {
-    switch (typeof item) {
-      case 'object':
-        localStorage.setItem(key, JSON.stringify(item));
-        break;
-      case 'boolean':
-      case 'number':
-        localStorage.setItem(key, item.toString());
-        break;
-      default:
-        localStorage.setItem(key, item);
-    }
-  }
-
-  getItem(key): any {
-    if (this.isJSON(localStorage.getItem(key))) {
-      return JSON.parse(localStorage.getItem(key));
-    }
-    return localStorage.getItem(key);
   }
 }
