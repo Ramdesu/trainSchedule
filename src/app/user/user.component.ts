@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageService} from "../local-storage.service";
 
 interface IUser {
   name: string,
@@ -17,15 +18,15 @@ export class UserComponent {
   user: IUser;
 
   constructor() {
-    this.user = JSON.parse(localStorage.getItem('user')) || {
+    this.user = LocalStorageService.getItem('user') || {
     name: '',
     surname: '',
     age: '',
     city: ''
-  }
+  } as IUser;
   }
 
   saveUser(): void {
-    localStorage.setItem('user', JSON.stringify(this.user));
+    LocalStorageService.setItem('user', this.user);
   }
 }
