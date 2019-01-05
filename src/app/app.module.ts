@@ -7,17 +7,20 @@ import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
 import { ScheduleComponent } from './schedule/schedule.component';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 
 const appRoutes: Routes =[
   { path: '', component: HomeComponent},
-  { path: 'timetable', component: ScheduleComponent}
+  { path: 'timetable', component: ScheduleComponent},
+  { path: 'cp', component: UserComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
