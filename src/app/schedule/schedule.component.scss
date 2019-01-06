@@ -1,5 +1,27 @@
 table {
-  line-height: 10px;
+  line-height: 30px;
   font-size: 20px;
   text-align: center;
+}
+
+tbody {
+  input[type="text"], input[type="number"] {
+    width: 100px;
+  }
+}
+
+input.form-control {
+  display: inline-block;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+table {
+  tbody{
+    tr {
+      &:hover {
+        background-color: #BBBBBB;
+      }
+    }
+  }
 }

@@ -14,7 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'timetable', component: ScheduleComponent},
-  { path: 'cp', component: UserComponent}
+  { path: 'me', component: UserComponent}
 ];
 
 @NgModule({
