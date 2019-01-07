@@ -19,10 +19,11 @@
     <div class="wrap"><mat-form-field appearance="standard">
       <span matPrefix>$&nbsp;</span>
       <mat-label>Стоимость билета</mat-label>
-      <input required matInput type="number" min="0" pattern="^[ 0-9]+$" [(ngModel)]="price" name="price" (keypress)="changePriceField($event)">
+      <input required matInput type="number" min="0" pattern="^[ 0-9]+$" [(ngModel)]="price" name="price">
     </mat-form-field></div>
 
-    <input type="submit" value="Добавить рейс" (click) = addTrip() class="btn btn-success"><br>
+    <div class="wrap"> <input type="submit" value="Добавить рейс" (click) = addTrip($event) class="btn btn-success"></div>
+    <div class="wrap"><input type="reset" value="Очистить форму" class="btn btn-secondary"></div>
   </form><br>
 
 
@@ -44,7 +45,7 @@
 
        <td>
          <span *ngIf="!trip.isEditable">{{trip.departureTime}}</span>
-         <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.departureTime" (click)="$event.stopPropagation()" class="form-control">
+         <input required *ngIf="trip.isEditable" type="time" [(ngModel)]="trip.departureTime" (click)="$event.stopPropagation()" class="form-control">
        </td>
 
        <td>
@@ -56,7 +57,7 @@
 
        <td>
          <span *ngIf="!trip.isEditable">{{ trip.price | currency:'USD' }}</span>
-         <input required min="0" pattern="^[ 0-9]+$" *ngIf="trip.isEditable" type="number" [(ngModel)]="trip.price" (click)="$event.stopPropagation()" (keypress)="changePriceField($event)" class="form-control">
+         <input required min="0" pattern="^[ 0-9]+$" *ngIf="trip.isEditable" type="number" [(ngModel)]="trip.price" (click)="$event.stopPropagation()" class="form-control">
        </td>
        <td>
          <input type="button" value="Удалить" (click)="deleteTrip(trip)" class="btn btn-danger">

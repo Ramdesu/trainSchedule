@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {LocalStorageService} from "../local-storage.service";
 
 interface ITrip {
@@ -23,18 +23,21 @@ export class ScheduleComponent{
 
   trips: ITrip[] = LocalStorageService.getItem('trips');
 
-  changePriceField($event): boolean {
-    return $event.charCode >= 48
-          && $event.charCode <= 57
-          || $event.charCode == 8
-          || $event.charCode == 46;
+  isValidForm(event: any): boolean {
+    let validate: boolean = true;
+
+    event.target.parentNode.parentNode.querySelectorAll('input').forEach(el => {
+      if(el.classList.contains('ng-invalid')) {
+        validate = false;
+        return;
+      }
+    });
+
+    return validate;
   }
-  addTrip(): void {
-    if(!this.departureTime
-        || !this.departurePoint
-        || !this.arrivalPoint
-        || !this.price
-        || this.price < 0) {
+
+  addTrip($event: any): void {
+    if(!this.isValidForm($event)) {
       return;
     }
 
@@ -52,10 +55,11 @@ export class ScheduleComponent{
     LocalStorageService.setItem('trips', this.trips);
   }
   editTrip(trip: ITrip, $event): void {
-    if(trip.price < 0
-      || typeof trip.price !== 'number') {
+    if(!this.isValidForm($event)) {
       return;
     }
+
     trip.isEditable = !trip.isEditable;
+    LocalStorageService.setItem('trips', this.trips);
   }
 }
