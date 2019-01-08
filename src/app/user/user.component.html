@@ -1,25 +1,4 @@
 <div class="wrap"><a routerLink="/timetable"><input type="button" value="Расписание" class="btn btn-primary"></a></div>
 <div class="wrap"><a routerLink="/"><input type="button" value="На главную" class="btn btn-primary"></a></div>
+<div class="wrap"><button (click)="openAuthDialog()" class="btn btn-secondary">Авторизоваться</button></div>
 
-<form>
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Имя</mat-label>
-    <input matInput type="text" [(ngModel)]="user.name" name="name">
-  </mat-form-field></div>
-
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Фамилия</mat-label>
-    <input matInput type="text" [(ngModel)]="user.surname" name="surname">
-  </mat-form-field></div>
-
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Возраст</mat-label>
-    <input matInput type="number" [(ngModel)]="user.age" name="age">
-  </mat-form-field></div>
-
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Город</mat-label>
-    <input matInput type="text" [(ngModel)]="user.city" name="city">
-  </mat-form-field></div>
-  <input type="button" value="Сохранить" (click)="saveUser()" class="btn btn-success">
-</form>

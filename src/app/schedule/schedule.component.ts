@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {LocalStorageService} from '../local-storage.service';
 
 interface ITrip {
-  departureTime: string,
-  departurePoint: string,
-  arrivalPoint: string,
-  price: number,
-  isEditable: boolean
+  departureTime: string;
+  departurePoint: string;
+  arrivalPoint: string;
+  price: number;
+  isEditable: boolean;
 }
 
 @Component({

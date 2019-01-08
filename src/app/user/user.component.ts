@@ -1,12 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {LocalStorageService} from "../local-storage.service";
-
-interface IUser {
-  name: string,
-  surname: string,
-  age: string,
-  city: string
-}
+import {Component} from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import {UserAuthDialogComponent} from '../user-auth-dialog/user-auth-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -15,18 +9,9 @@ interface IUser {
 })
 
 export class UserComponent {
-  user: IUser;
+  constructor(private dialog: MatDialog) {}
 
-  constructor() {
-    this.user = LocalStorageService.getItem('user') || {
-    name: '',
-    surname: '',
-    age: '',
-    city: ''
-  } as IUser;
-  }
-
-  saveUser(): void {
-    LocalStorageService.setItem('user', this.user);
+  openAuthDialog(): void {
+    const UserAuthDialogComponentRef = this.dialog.open(UserAuthDialogComponent);
   }
 }
