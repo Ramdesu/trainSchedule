@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LocalStorageService} from "../local-storage.service";
+import {LocalStorageService} from '../local-storage.service';
 
 interface ITrip {
   departureTime: string,
@@ -21,26 +21,9 @@ export class ScheduleComponent{
   arrivalPoint: string;
   price: number;
 
-  trips: ITrip[] = LocalStorageService.getItem('trips');
+  trips: ITrip[] = LocalStorageService.getItem('trips') ? LocalStorageService.getItem('trips') : [];
 
-  isValidForm(event: any): boolean {
-    let validate: boolean = true;
-
-    event.target.parentNode.parentNode.querySelectorAll('input').forEach(el => {
-      if(el.classList.contains('ng-invalid')) {
-        validate = false;
-        return;
-      }
-    });
-
-    return validate;
-  }
-
-  addTrip($event: any): void {
-    if(!this.isValidForm($event)) {
-      return;
-    }
-
+  addTrip(): void {
     this.trips = [{
       departureTime: this.departureTime,
       departurePoint: this.departurePoint,
@@ -54,10 +37,15 @@ export class ScheduleComponent{
     this.trips = this.trips.filter(obj => obj !== trip);
     LocalStorageService.setItem('trips', this.trips);
   }
-  editTrip(trip: ITrip, $event): void {
-    if(!this.isValidForm($event)) {
-      return;
-    }
+  editTrip(trip: ITrip): void {
+    let valid = true;
+    document.querySelector('#tripTable').querySelectorAll('input').forEach(el => {
+      if (el.classList.contains('ng-invalid')) {
+        valid = false;
+        return;
+      }
+    });
+    if (!valid) { return; }
 
     trip.isEditable = !trip.isEditable;
     LocalStorageService.setItem('trips', this.trips);

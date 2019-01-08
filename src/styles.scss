@@ -1,7 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 .wrap {
-  input[type='button'], input[type='submit'], input[type='reset'] {
+  input[type='button'], input[type='submit'], input[type='reset'], button {
     margin: {
       bottom: 5px;
     }
