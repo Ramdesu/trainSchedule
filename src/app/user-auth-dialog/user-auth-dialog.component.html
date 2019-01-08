@@ -1,39 +1,51 @@
 <form>
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Имя</mat-label>
-    <input required matInput type="text" [(ngModel)]="user.name" name="name" #n="ngModel">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Имя</mat-label>
+      <input required matInput type="text" [(ngModel)]="user.name" name="name" #nameControl="ngModel">
 
-    <mat-error *ngIf="n.invalid && (n.dirty || n.touched)">
-      <mat-error *ngIf="n.errors.required">Обязательное поле!</mat-error>
-    </mat-error>
-  </mat-form-field></div>
+      <mat-error *ngIf="nameControl.invalid && (nameControl.dirty || nameControl.touched)">
+        <mat-error *ngIf="nameControl.errors.required">Обязательное поле!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Фамилия</mat-label>
-    <input required matInput type="text" [(ngModel)]="user.surname" name="surname" #s="ngModel">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Фамилия</mat-label>
+      <input required matInput type="text" [(ngModel)]="user.surname" name="surname" #surnameControl="ngModel">
 
-    <mat-error *ngIf="s.invalid && (s.dirty || s.touched)">
-      <mat-error *ngIf="s.errors.required">Обязательное поле!</mat-error>
-    </mat-error>
-  </mat-form-field></div>
+      <mat-error *ngIf="surnameControl.invalid && (surnameControl.dirty || surnameControl.touched)">
+        <mat-error *ngIf="surnameControl.errors.required">Обязательное поле!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Возраст</mat-label>
-    <input required matInput type="number" [(ngModel)]="user.age" name="age" min="0" pattern="^[0-9]+$" #a="ngModel">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Возраст</mat-label>
+      <input required matInput type="number" [(ngModel)]="user.age" name="age" min="0" pattern="^[0-9]+$"
+             #ageControl="ngModel">
 
-    <mat-error *ngIf="a.invalid && (a.dirty || a.touched)">
-      <mat-error *ngIf="a.errors.required">Обязательное поле!</mat-error>
-      <mat-error *ngIf="a.errors.pattern">Неверное значение!</mat-error>
-    </mat-error>
-  </mat-form-field></div>
+      <mat-error *ngIf="ageControl.invalid && (ageControl.dirty || ageControl.touched)">
+        <mat-error *ngIf="ageControl.errors.required">Обязательное поле!</mat-error>
+        <mat-error *ngIf="ageControl.errors.pattern">Неверное значение!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-  <div class="wrap"><mat-form-field appearance="standard">
-    <mat-label>Город</mat-label>
-    <input required matInput type="text" [(ngModel)]="user.city" name="city" #c="ngModel">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Город</mat-label>
+      <input required matInput type="text" [(ngModel)]="user.city" name="city" #cityControl="ngModel">
 
-    <mat-error *ngIf="c.invalid && (c.dirty || c.touched)">
-      <mat-error *ngIf="c.errors.required">Обязательное поле!</mat-error>
-    </mat-error>
-  </mat-form-field></div>
-  <input type="button" value="Сохранить" (click)="saveUser()" class="btn btn-success" [disabled]="n.invalid || s.invalid || a.invalid || c.invalid">
+      <mat-error *ngIf="cityControl.invalid && (cityControl.dirty || cityControl.touched)">
+        <mat-error *ngIf="cityControl.errors.required">Обязательное поле!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button type="submit" (click)="saveUser()" class="btn btn-success"
+         [disabled]="nameControl.invalid || surnameControl.invalid || ageControl.invalid || cityControl.invalid">
+    Сохранить
+  </button>
 </form>

@@ -12,6 +12,6 @@ export class UserComponent {
   constructor(private dialog: MatDialog) {}
 
   openAuthDialog(): void {
-    const UserAuthDialogComponentRef = this.dialog.open(UserAuthDialogComponent);
+    this.dialog.open(UserAuthDialogComponent);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {LocalStorageService} from '../local-storage.service';
 
 interface ITrip {
@@ -15,7 +15,9 @@ interface ITrip {
   styleUrls: ['./schedule.component.scss']
 })
 
-export class ScheduleComponent{
+export class ScheduleComponent {
+  @ViewChild('editTripForm') editTripForm;
+
   departureTime: string;
   departurePoint: string;
   arrivalPoint: string;
@@ -38,14 +40,9 @@ export class ScheduleComponent{
     LocalStorageService.setItem('trips', this.trips);
   }
   editTrip(trip: ITrip): void {
-    let valid = true;
-    document.querySelector('#tripTable').querySelectorAll('input').forEach(el => {
-      if (el.classList.contains('ng-invalid')) {
-        valid = false;
-        return;
-      }
-    });
-    if (!valid) { return; }
+    if (this.editTripForm.status === 'INVALID') {
+      return;
+    }
 
     trip.isEditable = !trip.isEditable;
     LocalStorageService.setItem('trips', this.trips);

@@ -1,83 +1,108 @@
 <div class="wrap"><a routerLink="/"><input type="button" value="На главную" class="btn btn-primary"></a></div>
 
-  <form id="addTripForm">
-    <div class="wrap"><mat-form-field appearance="standard">
+<form>
+  <div class="wrap">
+    <mat-form-field appearance="standard">
       <mat-label>Время отправления</mat-label>
-      <input required matInput type="time" [(ngModel)]="departureTime" name="departureTime" #dTime="ngModel">
+      <input required matInput type="time" [(ngModel)]="departureTime" name="departureTime"
+             #departureTimeControl="ngModel">
 
-      <mat-error *ngIf="dTime.invalid && (dTime.dirty || dTime.touched)">
-        <mat-error *ngIf="dTime.errors.required">Обязательное поле!</mat-error>
+      <mat-error *ngIf="departureTimeControl.invalid && (departureTimeControl.dirty || departureTimeControl.touched)">
+        <mat-error *ngIf="departureTimeControl.errors.required">Обязательное поле!</mat-error>
       </mat-error>
-    </mat-form-field></div>
+    </mat-form-field>
+  </div>
 
-    <div class="wrap"><mat-form-field appearance="standard">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
       <mat-label>Пункт отправления</mat-label>
-      <input required matInput type="text" [(ngModel)]="departurePoint" name="departurePoint" #dPoint="ngModel">
+      <input required matInput type="text" [(ngModel)]="departurePoint" name="departurePoint"
+             #departurePointControl="ngModel">
 
-      <mat-error *ngIf="dPoint.invalid && (dPoint.dirty || dPoint.touched)">
-        <mat-error *ngIf="dPoint.errors.required">Обязательное поле!</mat-error>
+      <mat-error
+        *ngIf="departurePointControl.invalid && (departurePointControl.dirty || departurePointControl.touched)">
+        <mat-error *ngIf="departurePointControl.errors.required">Обязательное поле!</mat-error>
       </mat-error>
-    </mat-form-field></div>
+    </mat-form-field>
+  </div>
 
-    <div class="wrap"><mat-form-field appearance="standard">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
       <mat-label>Пункт прибытия</mat-label>
-      <input required matInput type="text" [(ngModel)]="arrivalPoint" name="arrivalPoint" #aPoint="ngModel">
+      <input required matInput type="text" [(ngModel)]="arrivalPoint" name="arrivalPoint"
+             #arrivalPointControl="ngModel">
 
-      <mat-error *ngIf="aPoint.invalid && (aPoint.dirty || aPoint.touched)">
-        <mat-error *ngIf="aPoint.errors.required">Обязательное поле!</mat-error>
+      <mat-error *ngIf="arrivalPointControl.invalid && (arrivalPointControl.dirty || arrivalPointControl.touched)">
+        <mat-error *ngIf="arrivalPointControl.errors.required">Обязательное поле!</mat-error>
       </mat-error>
-    </mat-form-field></div>
+    </mat-form-field>
+  </div>
 
-    <div class="wrap"><mat-form-field appearance="standard">
+  <div class="wrap">
+    <mat-form-field appearance="standard">
       <span matPrefix>$&nbsp;</span>
       <mat-label>Стоимость билета</mat-label>
-      <input required matInput type="number" min="0" pattern="^[0-9]+$" [(ngModel)]="price" name="price" #p="ngModel">
+      <input required matInput type="number" min="0" pattern="^[0-9]+$" [(ngModel)]="price" name="price"
+             #priceControl="ngModel">
 
-      <mat-error *ngIf="p.invalid && (p.dirty || p.touched)">
-        <mat-error *ngIf="p.errors.required">Обязательное поле!</mat-error>
-        <mat-error *ngIf="p.errors.pattern">Неверное значение!</mat-error>
+      <mat-error *ngIf="priceControl.invalid && (priceControl.dirty || priceControl.touched)">
+        <mat-error *ngIf="priceControl.errors.required">Обязательное поле!</mat-error>
+        <mat-error *ngIf="priceControl.errors.pattern">Неверное значение!</mat-error>
       </mat-error>
-    </mat-form-field></div>
+    </mat-form-field>
+  </div>
 
-    <div class="wrap"> <button (click) = addTrip() class="btn btn-success" [disabled]="dTime.invalid || dPoint.invalid || aPoint.invalid || p.invalid">Добавить рейс</button></div>
-    <div class="wrap"><input type="reset" value="Очистить форму" class="btn btn-secondary"></div>
-  </form><br>
+  <div class="wrap">
+    <button type="submit" (click)=addTrip() class="btn btn-success"
+            [disabled]="departureTimeControl.invalid || departurePointControl.invalid ||
+            arrivalPointControl.invalid || priceControl.invalid">
+      Добавить рейс
+    </button>
+  </div>
+  <div class="wrap"><input type="reset" value="Очистить форму" class="btn btn-secondary"></div>
+</form><br>
 
-<table class="table table-striped" id="tripTable">
-  <thead *ngIf="trips.length != 0">
-  <tr>
-    <th>#</th>
-    <th>Время отправления</th>
-    <th>Маршрут</th>
-    <th>Стоимость билета</th>
-    <th></th>
-  </tr>
-  </thead>
- <tbody>
-   <tr *ngFor="let trip of trips; let index = index" (click)="editTrip(trip, $event)">
-       <td>
-         {{index + 1}}
-       </td>
+<form #editTripForm="ngForm" name="editTripForm">
+  <table class="table table-striped" id="tripTable">
+    <thead *ngIf="trips.length != 0">
+    <tr>
+      <th>#</th>
+      <th>Время отправления</th>
+      <th>Маршрут</th>
+      <th>Стоимость билета</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let trip of trips; let index = index" (click)="editTrip(trip)">
+      <td>
+        {{index + 1}}
+      </td>
 
-       <td>
-         <span *ngIf="!trip.isEditable">{{trip.departureTime}}</span>
-         <input required *ngIf="trip.isEditable" type="time" [(ngModel)]="trip.departureTime" (click)="$event.stopPropagation()" class="form-control">
-       </td>
+      <td>
+        <span *ngIf="!trip.isEditable">{{trip.departureTime}}</span>
+        <input required *ngIf="trip.isEditable" type="time" [(ngModel)]="trip.departureTime"
+               (click)="$event.stopPropagation()" class="form-control" name="departureTime">
+      </td>
 
-       <td>
-         <span *ngIf="!trip.isEditable">{{trip.departurePoint}} - {{trip.arrivalPoint}}</span>
-         <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.departurePoint" (click)="$event.stopPropagation()" class="form-control">
-         <span required *ngIf="trip.isEditable">-</span>
-         <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.arrivalPoint" (click)="$event.stopPropagation()" class="form-control">
-       </td>
+      <td>
+        <span *ngIf="!trip.isEditable">{{trip.departurePoint}} - {{trip.arrivalPoint}}</span>
+        <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.departurePoint"
+               (click)="$event.stopPropagation()" class="form-control" name="departurePoint">
+        <span required *ngIf="trip.isEditable">-</span>
+        <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.arrivalPoint"
+               (click)="$event.stopPropagation()" class="form-control" name="arrivalPoint">
+      </td>
 
-       <td>
-         <span *ngIf="!trip.isEditable">{{ trip.price | currency:'USD' }}</span>
-         <input required min="0" pattern="^[ 0-9]+$" *ngIf="trip.isEditable" type="number" [(ngModel)]="trip.price" (click)="$event.stopPropagation()" class="form-control">
-       </td>
-       <td>
-         <input type="button" value="Удалить" (click)="deleteTrip(trip)" class="btn btn-danger">
-       </td>
-   </tr>
- </tbody>
-</table>
+      <td>
+        <span *ngIf="!trip.isEditable">{{ trip.price | currency:'USD' }}</span>
+        <input required min="0" pattern="^[ 0-9]+$" *ngIf="trip.isEditable" type="number" [(ngModel)]="trip.price"
+               (click)="$event.stopPropagation()" class="form-control" name="price">
+      </td>
+      <td>
+        <input type="button" value="Удалить" (click)="deleteTrip(trip)" class="btn btn-danger">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
