@@ -2,11 +2,15 @@ table {
   line-height: 30px;
   font-size: 20px;
   text-align: center;
-}
-
-tbody {
-  input[type="text"], input[type="number"], input[type="time"] {
-    width: 110px;
+  tbody {
+    input[type="text"], input[type="number"], input[type="time"] {
+      width: 110px;
+    }
+    tr {
+      &:hover {
+        background-color: #BBBBBB;
+      }
+    }
   }
 }
 
@@ -18,15 +22,5 @@ input.form-control {
     border-color: #ff6866;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(255, 7, 2, 0.25);
-  }
-}
-
-table {
-  tbody{
-    tr {
-      &:hover {
-        background-color: #BBBBBB;
-      }
-    }
   }
 }

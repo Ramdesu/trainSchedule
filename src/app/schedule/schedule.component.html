@@ -63,20 +63,21 @@
 </form><br>
 
 <form #editTripForm="ngForm" name="editTripForm">
-  <table class="table table-striped" id="tripTable">
+  <table matSort (matSortChange)="sortTrips($event)" class="table table-striped" id="tripTable">
     <thead *ngIf="trips.length != 0">
     <tr>
-      <th>#</th>
-      <th>Время отправления</th>
-      <th>Маршрут</th>
-      <th>Стоимость билета</th>
+      <th mat-sort-header="id">#</th>
+      <th mat-sort-header="departureTime">Время отправления</th>
+      <th mat-sort-header="departurePoint">Пункт отправления</th>
+      <th mat-sort-header="arrivalPoint">Пункт прибытия</th>
+      <th mat-sort-header="price">Стоимость билета</th>
       <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let trip of trips; let index = index" (click)="editTrip(trip)">
+    <tr *ngFor="let trip of trips;" (click)="editTrip(trip)">
       <td>
-        {{index + 1}}
+        {{trip.id}}
       </td>
 
       <td>
@@ -86,10 +87,13 @@
       </td>
 
       <td>
-        <span *ngIf="!trip.isEditable">{{trip.departurePoint}} - {{trip.arrivalPoint}}</span>
+        <span *ngIf="!trip.isEditable">{{trip.departurePoint}}</span>
         <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.departurePoint"
                (click)="$event.stopPropagation()" class="form-control" name="departurePoint">
-        <span required *ngIf="trip.isEditable">-</span>
+      </td>
+
+      <td>
+        <span *ngIf="!trip.isEditable">{{trip.arrivalPoint}}</span>
         <input required *ngIf="trip.isEditable" type="text" [(ngModel)]="trip.arrivalPoint"
                (click)="$event.stopPropagation()" class="form-control" name="arrivalPoint">
       </td>
