@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import {Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
+import {UserComponent} from './user/user.component';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material';
+import {UserAuthDialogComponent} from './user-auth-dialog/user-auth-dialog.component';
 
 const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'timetable', component: ScheduleComponent},
-  { path: 'cp', component: UserComponent}
+  { path: 'me', component: UserComponent}
 ];
 
 @NgModule({
@@ -22,7 +24,8 @@ const appRoutes: Routes =[
     AppComponent,
     ScheduleComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    UserAuthDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +33,10 @@ const appRoutes: Routes =[
     FormsModule,
     RouterModule.forRoot(appRoutes),
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
+  entryComponents: [UserAuthDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

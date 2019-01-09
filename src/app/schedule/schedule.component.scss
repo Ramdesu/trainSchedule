@@ -1,5 +1,32 @@
 table {
-  line-height: 10px;
+  line-height: 30px;
   font-size: 20px;
   text-align: center;
+}
+
+tbody {
+  input[type="text"], input[type="number"], input[type="time"] {
+    width: 110px;
+  }
+}
+
+input.form-control {
+  display: inline-block;
+  line-height: 30px;
+  font-size: 20px;
+  &.ng-invalid {
+    border-color: #ff6866;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 7, 2, 0.25);
+  }
+}
+
+table {
+  tbody{
+    tr {
+      &:hover {
+        background-color: #BBBBBB;
+      }
+    }
+  }
 }

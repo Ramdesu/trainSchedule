@@ -1,0 +1,51 @@
+<form>
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Имя</mat-label>
+      <input required matInput type="text" [(ngModel)]="user.name" name="name" #nameControl="ngModel">
+
+      <mat-error *ngIf="nameControl.invalid && (nameControl.dirty || nameControl.touched)">
+        <mat-error *ngIf="nameControl.errors.required">Обязательное поле!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Фамилия</mat-label>
+      <input required matInput type="text" [(ngModel)]="user.surname" name="surname" #surnameControl="ngModel">
+
+      <mat-error *ngIf="surnameControl.invalid && (surnameControl.dirty || surnameControl.touched)">
+        <mat-error *ngIf="surnameControl.errors.required">Обязательное поле!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Возраст</mat-label>
+      <input required matInput type="number" [(ngModel)]="user.age" name="age" min="0" pattern="^[0-9]+$"
+             #ageControl="ngModel">
+
+      <mat-error *ngIf="ageControl.invalid && (ageControl.dirty || ageControl.touched)">
+        <mat-error *ngIf="ageControl.errors.required">Обязательное поле!</mat-error>
+        <mat-error *ngIf="ageControl.errors.pattern">Неверное значение!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="wrap">
+    <mat-form-field appearance="standard">
+      <mat-label>Город</mat-label>
+      <input required matInput type="text" [(ngModel)]="user.city" name="city" #cityControl="ngModel">
+
+      <mat-error *ngIf="cityControl.invalid && (cityControl.dirty || cityControl.touched)">
+        <mat-error *ngIf="cityControl.errors.required">Обязательное поле!</mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button type="submit" (click)="saveUser()" class="btn btn-success"
+         [disabled]="nameControl.invalid || surnameControl.invalid || ageControl.invalid || cityControl.invalid">
+    Сохранить
+  </button>
+</form>
