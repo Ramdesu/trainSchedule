@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 import {UserComponent} from './user/user.component';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material';
+import {MatDialogModule, MatSortModule} from '@angular/material';
 import {UserAuthDialogComponent} from './user-auth-dialog/user-auth-dialog.component';
 
 const appRoutes: Routes =[
@@ -34,7 +34,8 @@ const appRoutes: Routes =[
     RouterModule.forRoot(appRoutes),
     MatInputModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ],
   entryComponents: [UserAuthDialogComponent],
   providers: [],
